@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import br.com.alura.loja.dao.ClienteDAO;
 import br.com.alura.loja.dao.PedidoDAO;
 import br.com.alura.loja.dao.ProdutoDAO;
+import br.com.alura.loja.modelo.Categoria;
+import br.com.alura.loja.modelo.CategoriaId;
 import br.com.alura.loja.modelo.Cliente;
 import br.com.alura.loja.modelo.ItemPedido;
 import br.com.alura.loja.modelo.Pedido;
@@ -39,6 +41,8 @@ public class CadastroDePedido {
 		
 		List<RelatorioDeVendasVo> relatorioDeVendas = pedidoDAO.relatorioDeVendas();
 		relatorioDeVendas.forEach(System.out::println);
+		
+		em.find(Categoria.class, new CategoriaId("CELULARES", "xpto"));
 		
 		//Pedido pedido2 = em.find(Pedido.class, 2l);
 		Pedido pedido2 = pedidoDAO.buscarPedidoComCliente(2l);
