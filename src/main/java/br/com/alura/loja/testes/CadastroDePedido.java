@@ -30,7 +30,7 @@ public class CadastroDePedido {
 		pedido.adicionarItem(new ItemPedido(10, pedido, produto));
 		
 		PedidoDAO pedidoDAO = new PedidoDAO(em);
-		pedidoDAO.cadastrar(pedido);
+		//pedidoDAO.cadastrar(pedido);
 		
 		em.getTransaction().commit();
 		
@@ -39,5 +39,11 @@ public class CadastroDePedido {
 		
 		List<RelatorioDeVendasVo> relatorioDeVendas = pedidoDAO.relatorioDeVendas();
 		relatorioDeVendas.forEach(System.out::println);
+		
+		//Pedido pedido2 = em.find(Pedido.class, 2l);
+		Pedido pedido2 = pedidoDAO.buscarPedidoComCliente(2l);
+		em.close();
+
+		System.out.println(pedido2.getCliente().getNome());
 	}
 }

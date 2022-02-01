@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,7 +26,8 @@ public class Pedido {
 	private BigDecimal valorTotal = BigDecimal.ZERO;
 	private LocalDate data = LocalDate.now();
 	
-	@ManyToOne
+	//É uma boa prática deixar todos os relacionamentos ToOne como lazy
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 
 	// Cascade ALL para refletir todas as operações em ItemPedido (se remover o Pedido pode remover o ItensPedido tb)
