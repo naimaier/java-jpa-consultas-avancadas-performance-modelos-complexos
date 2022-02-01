@@ -43,9 +43,9 @@ public class ProdutoDAO {
 				.getResultList();
 	}
 	
+	//Exemplo de named query
 	public List<Produto> buscarPorNomeDaCategoria(String nome){
-		String jpql = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome";
-		return this.em.createQuery(jpql, Produto.class)
+		return this.em.createNamedQuery("Produto.produtosPorCategoria", Produto.class)
 				.setParameter("nome", nome)
 				.getResultList();
 	}

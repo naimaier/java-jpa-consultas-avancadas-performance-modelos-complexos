@@ -1,5 +1,8 @@
 package br.com.alura.loja.testes;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import br.com.alura.loja.dao.ClienteDAO;
@@ -10,6 +13,7 @@ import br.com.alura.loja.modelo.ItemPedido;
 import br.com.alura.loja.modelo.Pedido;
 import br.com.alura.loja.modelo.Produto;
 import br.com.alura.loja.util.JPAUtil;
+import br.com.alura.loja.vo.RelatorioDeVendasVo;
 
 public class CadastroDePedido {
 	public static void main(String[] args) {
@@ -29,5 +33,11 @@ public class CadastroDePedido {
 		pedidoDAO.cadastrar(pedido);
 		
 		em.getTransaction().commit();
+		
+		BigDecimal totalVendido = pedidoDAO.valorTotalVendido();
+		System.out.println("Valor total vendido: " + totalVendido);
+		
+		List<RelatorioDeVendasVo> relatorioDeVendas = pedidoDAO.relatorioDeVendas();
+		relatorioDeVendas.forEach(System.out::println);
 	}
 }
